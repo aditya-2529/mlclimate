@@ -2,9 +2,13 @@ import streamlit as st
 import streamlit.components.v1 as com
 with open("./static/index.css") as source:
     design=source.read()
+with open("./static/all.css") as source:
+    design1=source.read()
+with open("./static/framework.css") as source:
+    design2=source.read()
 com.html(f"""
 <div>
-<style>{design}</style>
+<style>{design}{design1}{design2}</style>
 <body id="top">
 <div class="bgded overlay padtop" style="background-image:url('https://www.theclimategroup.org/sites/default/files/styles/image_with_text_desktop/public/2021-01/shutterstock_1660865671.jpg?h=f2fcf546&itok=4zTE5ial');"> 
   <header id="header" class="hoc clear">
@@ -277,4 +281,4 @@ com.html(f"""
   </div>
 </div>
 <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
-""") 
+""",height=2500) 
