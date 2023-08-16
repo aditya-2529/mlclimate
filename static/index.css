@@ -137,7 +137,7 @@
 Settings are all different due to the optical similarity needed for different sized elements
 Delete this section if roundness is not wanted / required
 --------------------------------------------------------------------------------------------------------------- */
-.btn{border-radius:14px;}
+.btn1{border-radius:14px;}
 #footer input, #footer button{border-radius:12px;}
 
 
@@ -275,8 +275,9 @@ input:focus, textarea:focus, *:required:focus{border-color:#0AC6FC !important;}
 .overlay.light{color:#474747;}
 .overlay.light::after{background-color:rgba(255,255,255,.7);}
 
-.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#0AC6FC; border-color:#0AC6FC;}
-.btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
+.btn1, .btn1.inverse:hover{color:#FFFFFF; background-color:#0AC6FC; border-color:#0AC6FC;text-decoration: none;
+padding: 25px;font-size: x-large;}
+.btn1:hover, .btn1.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
 .imgover:hover::before{background-color:rgba(10,198,252,.3);/* #0AC6FC */}
 .imgover, .imgover:hover::after{color:#FFFFFF;}
