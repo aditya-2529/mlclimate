@@ -8,69 +8,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/prediction_styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>        
     <style>
-        .scrolling-wrapper{
-            overflow-x: auto;
-        }
-        .subtitle{
-        font-size: 1.25em;
-        opacity: 0.65;
-        }
-        .card-block{
-        height: 80px;
-        background-color: #fff;
-        border: none;
-        background-position: center;
-        background-size: cover;
-        text-align: center;
-        transition: all 0.2s ease-in-out !important;
-        border-radius: 18px;
-        width: 100px;
-        &:hover{
-            transform: translateY(-5px);
-            box-shadow: none;
-            opacity: 0.9;
-        }
-        }
-
-        .card-1{
-        background-color: #4158D0;
-        background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-        }
-
-        .card-2{
+      .btn-sub{
         background-color: #0093E9;
         background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-        }
-
-        .card-3{
-        background-color: #00DBDE;
-        background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
-        }
-
-        .card-4{
-        background-color: #FBAB7E;
-        background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
-        }
-
-        .card-5{
-        background-color: #85FFBD;
-        background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
-        }
-
-        .card-6{
-        background-color: #FA8BFF;
-        background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
-        }
-        .go-back{
-            background-color: #FBAB7E;
-            background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
-        }
-
+      }
+      .form-group{
+        padding-right: 20%;
+      }
     </style>
-</head>
+  </head>
 <body>
       <header id="header" class="hoc clear">
         <div id="logo" class="fl_left"> 
@@ -103,25 +51,46 @@
           </div>
         </nav>
       </header>
-      
-    <div class="container-fluid">
-        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
-            {% for json_obj in json_data %}
-            <div class="col-1">
-            <div class="card card-block card-2">
-                {{ json_obj["ds"]|tojson|safe }}
-                {{ json_obj["yhat"]|tojson|safe }}
+      <div class="wrapper row3">
+        <main class="hoc container clear"> 
+            <div class="content three_quarter"> 
+                <div id="comments">
+                <h2 class="display-4 text-primary font-weight-bold">Let's Predict</h2>
+                <div class="container form-container form-group">
+                  <form action="{{url_for('weather_predict')}}" method="POST">
+                    <div class="one_third first">
+                        <label for="frequency">Time Unit<span>*</span></label>
+                        <select class="form-control border-success" name="frequency" id="frequency" required>
+                            <option value="days">Days</option>
+                            <option value="weeks">Weeks</option>
+                            <option value="weeks">Months</option>
+                            <option value="years">Years</option>
+                        </select>
+                    </div>
+                    <div class="one_third">
+                      <label for="what">What to Predict</label>
+                      <select class="form-control border-success" name="what" id="what" required>
+                          <option value="temperature">Temperature</option>
+                          <option value="precipitation">Precipitation</option>
+                          <option value="wind">Wind</option>
+                          <option value="all">Overall</option>
+                      </select>
+                    </div>
+                    <div class="one_third">
+                      <label for="period">Time-Span<span>*</span></label>
+                      <input class="form-control border-success" type="text" name="period" id="period" required>
+                    </div>
+                    <br>
+                    <div class="container">
+                        <button class="btn btn-primary btn-lg btn-sub" type="submit" name="submit" value="Submit Form">
+                          Predict
+                        </button>
+                    </div>
+                  </form>
+                </div>
+                                                                               
             </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="container">
-        <div class="">
-            <form action="{{url_for('predict')}}" method="POST">
-                <button type="submit" class="btn btn-primary btn-lg go-back">Get More Data</button>
-            </form>
-        </div>
+        </main>
     </div>
 <script src="../static/jquery.min.js"></script>
 <script src="../static/jquery.backtotop.js"></script>

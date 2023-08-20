@@ -110,7 +110,8 @@
             <div class="col-1">
             <div class="card card-block card-2">
                 {{ json_obj["ds"]|tojson|safe }}
-                {{ json_obj["yhat"]|tojson|safe }}
+                {{ json_obj["max"]|tojson|safe }}
+                {{ json_obj["min"]|tojson|safe }}
             </div>
             </div>
             {% endfor %}
