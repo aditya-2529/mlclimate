@@ -1,9 +1,13 @@
 from distutils.log import debug
 from flask import Flask , render_template, request
 import json
-import pandas as pd 
+import pandas as pd
+import matplotlib.pyplot as plt
 from prophet.serialize import model_from_json
+
 app = Flask(__name__)
+
+
 
 @app.route('/')
 def index():
@@ -27,11 +31,12 @@ def weather_predict():
         m_min = load_temp_min()
         df_max_temp = prediction(m_max, periods, freq)
         df_min_temp = prediction(m_min, periods, freq)
+        print(df_max_temp.head(2))  
         df_max_temp.rename(columns={'yhat':'max'},inplace = True)
         df_min_temp.rename(columns={'yhat':'min'},inplace = True)
         df_min_temp.drop(['ds'], axis= 1,inplace = True)
         df = pd.concat([df_max_temp, df_min_temp],axis= 1, join = 'inner')
-        json_data = convert_to_json(df)        
+        json_data = convert_to_json(df)      
         return render_template('predict_temp.html',json_data=json_data)
     
     elif what == 'wind' :
@@ -90,6 +95,10 @@ def load_wind():
 @app.route('/feed')
 def feed():
     return render_template('feed.html')
+
+@app.route('/features')
+def features():
+    return render_template('features.html')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5000)

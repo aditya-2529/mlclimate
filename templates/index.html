@@ -11,38 +11,40 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 </head>
 <body id="top">
-<div class="bgded overlay padtop" style="background-image:url('https://www.theclimategroup.org/sites/default/files/styles/image_with_text_desktop/public/2021-01/shutterstock_1660865671.jpg?h=f2fcf546&itok=4zTE5ial');"> 
-  <header id="header" class="hoc clear" style="background: transparent;">
-    <div id="logo" class="fl_left"> 
-      <h1><a href="/" style="text-decoration: none;">Climate Change Prediction</a></h1>
-    </div>
-    <nav class="navbar navbar-expand-lg" style="float: right;">
+<div class="bgded overlay padtop" style="background-image:url('https://www.wallpaperup.com/uploads/wallpapers/2015/06/13/720991/202180fab978e812f31d27cb833f9a24.jpg');"> 
+  
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: transparent;">
       <div class="container-fluid">
-        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand fs-1 text-white" href="/">Climate Change</a>
+        <button
+          class="navbar-toggler bg-white"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" style="color: #fff;font-size: large;" aria-current="page" href="#">Home</a>
+              <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" style="color: #fff;font-size: large;" href="#">Features</a>
+              <a class="nav-link text-white" href="features">Features</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" style="color: #fff;font-size: large;" href="predict">Prediction</a>
+              <a class="nav-link text-white" href="feed">Feedback</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" style="color: #fff;font-size: large;" href="feed">Feedback</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" style="color: #fff;font-size: large;" href="help">Help</a>
+              <a class="nav-link text-white" href="help">Help</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  </header>
   <div id="pageintro" class="hoc clear"> 
     <article>
       <h3 class="heading">Choose your way to get prediction</h3>
@@ -116,5 +118,8 @@
 <script src="../static/jquery.min.js"></script>
 <script src="../static/jquery.backtotop.js"></script>
 <script src="../static/jquery.mobilemenu.js"></script>
+<script>
+    console.log(`{{c}}`);
+</script>
 </body>
 </html>

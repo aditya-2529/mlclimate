@@ -442,3 +442,325 @@ table a, #comments a{background-color:inherit;}
 	.font-x2{font-size:1.6rem;}
 	.font-x3{font-size:1.8rem;}
 }
+
+*{
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    
+}
+.section-p1{
+    padding: 40px 80px;
+}
+/* #header{
+    background-image: linear-gradient(to right, rgb(255, 102, 0) , rgb(0, 179, 255));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 80px;
+    background-color: aliceblue;
+    box-sizing: 0 15px 15px rgba();
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    box-shadow: 10px 10px lightblue;
+} */
+
+
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	padding: 15px;
+	background: linear-gradient(to right, rgb(255, 102, 0) , rgb(0, 179, 255));
+    
+}
+
+#navbar li{
+    list-style: none;
+    padding: 0 20px;
+}
+
+#navbar li a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover{
+    color: blue;
+}
+
+
+
+
+#backg{
+    background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2015/06/13/720991/202180fab978e812f31d27cb833f9a24.jpg");
+    height: 90vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top 25% right 0;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#heading{
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: #ffffff;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: 100;
+}
+
+#getstart{
+  background-color: #008CBA; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+
+}
+
+#getstart:hover{
+    background-color: #65a4b9; 
+}
+
+#feature{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#feature img{
+    width: 200px;
+    height: 100px;
+}
+#feature a{
+    display: flex;
+    align-items: center;
+   
+}
+
+#feature .box1{
+    width: 280px;
+    text-align: center;
+    padding: 25px 15px;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
+    border: 1px solid gray;
+}
+
+#feature .box2{
+    width: 280px;
+    text-align: center;
+    padding: 25px 15px;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
+    border: 1px solid gray;
+}
+
+#feature .box3{
+    width: 280px;
+    text-align: center;
+    padding: 25px 15px;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
+    border: 1px solid gray;
+}
+
+
+/*predict css*/
+
+#headerp{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background-color: #01546b;
+    box-sizing: 0 15px 15px rgba();
+    color: aliceblue; 
+    position: sticky;
+    top: 0px;
+    left: 0px;
+}
+
+
+#navbarp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#navbarp li{
+    list-style: none;
+    padding: 0 20px;
+
+
+}
+
+#navbarp li a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: aliceblue; 
+    transition: 0.3s ease;
+}
+
+#navbarp li a:hover{
+    color: #FFFF99
+    ;
+}
+
+#headerp h2{
+    color: aliceblue;
+}
+
+#max{
+    padding: 70px 30px 75px 30px;
+    font-weight: bold;
+}
+
+#max:after {
+    content:" *";
+    color: red;
+}
+
+#min{
+    padding: 70px 30px 75px 30px;
+    font-weight: bold;
+}
+
+#min:after {
+    content:" *";
+    color: red;
+}
+
+#pre{
+    padding: 70px 30px 75px 30px;
+    font-weight: bold;
+}
+
+#win{
+    padding: 70px 30px 75px 30px;
+    font-weight: bold;
+}
+
+#weth{
+    padding: 70px 30px 75px 30px;
+    font-weight: bold;
+}
+
+#banner-img{
+    background-image: url("https://www.noaa.gov/sites/default/files/styles/landscape_width_1275/public/2022-03/PHOTO-Climate-Collage-Diagonal-Design-NOAA-Communications-NO-NOAA-Logo.jpg?h=6f2719d3&itok=5z66VZJv");
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+   
+    /*filter: blur(5px);*/
+    
+}
+
+#banner-text{
+
+}
+
+
+/*Feed*/
+
+#name{
+    padding: 10px 40px;
+    margin: 0px 0px 15px;
+}
+
+#name:after {
+    content:" *";
+    color: red;
+}
+
+#email{
+    padding: 10px 40px;
+    margin: 0px 0px 15px;
+}
+
+#email:after {
+    content:" *";
+    color: red;
+}
+
+#web{
+    padding: 10px 40px;
+    margin: 0px 0px 15px;
+}
+
+#comment{
+    padding: 70px 30px 75px 30px;
+}
+
+#com{
+    padding: 100px 30px 75px 30px;
+
+}
+
+/*Help*/
+.fa {
+    padding: 10px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  }
+  
+  .fa:hover {
+      opacity: 0.7;
+  }
+ 
+  footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  footer .col{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  @media screen (max-width:799px) {
+    #navbar{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 0;
+        right: 0px;
+        height: 100vh;
+        width: 300px;
+        background-color: beige;
+        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+        padding: 80px 0 0 10px;
+    }
+
+    #navbar li{
+        margin-bottom: 25px;   
+    }
+  }
