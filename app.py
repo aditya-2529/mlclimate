@@ -31,7 +31,6 @@ def weather_predict():
         m_min = load_temp_min()
         df_max_temp = prediction(m_max, periods, freq)
         df_min_temp = prediction(m_min, periods, freq)
-        print(df_max_temp.head(2))  
         df_max_temp.rename(columns={'yhat':'max'},inplace = True)
         df_min_temp.rename(columns={'yhat':'min'},inplace = True)
         df_min_temp.drop(['ds'], axis= 1,inplace = True)
