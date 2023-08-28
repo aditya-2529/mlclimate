@@ -35,7 +35,7 @@ def weather_predict():
         df_min_temp.rename(columns={'yhat':'min'},inplace = True)
         df_min_temp.drop(['ds'], axis= 1,inplace = True)
         df = pd.concat([df_max_temp, df_min_temp],axis= 1, join = 'inner')
-        json_data = convert_to_json(df)      
+        json_data = convert_to_json(df)
         return render_template('predict_temp.html',json_data=json_data)
     
     elif what == 'wind' :
@@ -100,4 +100,4 @@ def features():
     return render_template('features.html')
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=5000)
+    app.run(host="0.0.0.0",port=5000,debug=True)
