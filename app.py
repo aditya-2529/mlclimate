@@ -3,15 +3,37 @@ from flask import Flask , render_template, request
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
+import pymongo
 from prophet.serialize import model_from_json
 
 app = Flask(__name__)
 
+def getDb():
+    CONNECTION_STRING='mongodb+srv://add:v2GQe5gvNiL2IPk0@cluster0.gszdvho.mongodb.net/?retryWrites=true&w=majority'
+    try:
+        # client = pymongo.MongoClient('localhost',27017)
+        client = pymongo.MongoClient(CONNECTION_STRING)
+        print("Connection to Mongo success")
+    except:
+        print("Connection not done")
+    mydb = client["climate"]
+    return mydb
 
+def insert():
+    c = getDb()
+    myColl = c["states"]
+    with open('./static/data.json',encoding="utf8") as file:
+        file_data = json.load(file)
+    myColl.insert_many(file_data)
+    
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    # insert()
+    c = getDb()
+    mycoll = c["table"].find()
+    title = mycoll[0]["title"]
+    return render_template('index.html',title = title)
 
 @app.route('/help')
 def help():
@@ -97,7 +119,25 @@ def feed():
 
 @app.route('/features')
 def features():
-    return render_template('features.html')
+    l = length()
+    mycoll = get_coll("states")
+    cName = [0] * l
+    for i in range(0,l):
+        cName[i] = mycoll[i]["countryName"]
+    return render_template('features.html',cname=cName)
+
+def get_coll(s):
+    c = getDb()
+    return c[s].find()
+
+def length():
+    c = getDb()
+    mycoll = c["states"].find()
+    count = 0
+    for i in list(mycoll):
+        # print(i)
+        count += 1
+    return count
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5000,debug=True)

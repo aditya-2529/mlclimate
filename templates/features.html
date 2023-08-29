@@ -8,7 +8,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
     <div class="container-fluid">
-      <a class="navbar-brand fs-1" href="#">Climate Change</a>
+      <a class="navbar-brand fs-1" href="/">Climate Change</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -23,7 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="features">Features</a>
@@ -57,21 +57,11 @@
 <script src="../static/jquery.backtotop.js"></script>
 <script src="../static/jquery.mobilemenu.js"></script>
 <script>
-    $.getJSON('../static/data.json',function(data){
+        var data = JSON.parse('{{ cname|tojson|safe }}');
         for (var i = 0 ; i < data.length; i++){
-            var t = `<option class="m-4 p-4 ${i}" value="${i}">${data[i].countryName}</option>`
+            var t = `<option class="m-4 p-4">${data[i]}</option>`
             $('#sel_country').append(t);
         }
-    })
-    // $.getJSON('../static/data.json',function(data){
-    //     for(var i = 0 ; i < data.length ; i++){
-    //         var i1 = $(`.${i}`).val();
-    //         for(var j = 0 ; j < data[i1].regions.length; j++){
-    //             var t = `<option>${data[i1].regions[j].name}</option>`
-    //             $('#sel_region').append(t);
-    //         }
-    //     }
-    // })
     
 </script>
 </body>
