@@ -32,7 +32,7 @@
             <a class="nav-link" href="feed">Feedback</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="help">About Us</a>
+            <a class="nav-link" href="help">z</a>
           </li>
         </ul>
       </div>
@@ -57,11 +57,21 @@
 <script src="../static/jquery.backtotop.js"></script>
 <script src="../static/jquery.mobilemenu.js"></script>
 <script>
-        var data = JSON.parse('{{ cname|tojson|safe }}');
+    $.getJSON('../static/data.json',function(data){
         for (var i = 0 ; i < data.length; i++){
-            var t = `<option class="m-4 p-4">${data[i]}</option>`
+            var t = `<option class="m-4 p-4 ${i}" value="${i}">${data[i].countryName}</option>`
             $('#sel_country').append(t);
         }
+    })
+    // $.getJSON('../static/data.json',function(data){
+    //     for(var i = 0 ; i < data.length ; i++){
+    //         var i1 = $(`.${i}`).val();
+    //         for(var j = 0 ; j < data[i1].regions.length; j++){
+    //             var t = `<option>${data[i1].regions[j].name}</option>`
+    //             $('#sel_region').append(t);
+    //         }
+    //     }
+    // })
     
 </script>
 </body>
