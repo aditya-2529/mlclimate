@@ -42,18 +42,18 @@ def weather_predict():
         m = load_wind()
         df = prediction(m,periods, freq)
         json_data = convert_to_json(df)
-        return render_template('predict.html',json_data= json_data)
+        return render_template('predict.html',json_data= json_data,w=what)
     
     elif what == 'weather' :
         m = load_wind()
         df = prediction(m,periods, freq)
         json_data = convert_to_json(df)
-        return render_template('predict.html',json_data=json_data)
+        return render_template('predict.html',json_data=json_data,w=what)
     
     m = load_precipitation()
     df= prediction(m,periods, freq)
     json_data = convert_to_json(df)
-    return render_template('predict.html', json_data= json_data)
+    return render_template('predict.html', json_data= json_data,w=what)
 
 def convert_to_json(df):
     json_data = df.to_json(orient = 'records')

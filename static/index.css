@@ -11,7 +11,6 @@
 .row4, .row4 a{}
 .row5, .row5 a{}
 
-
 /* Header
 --------------------------------------------------------------------------------------------------------------- */
 .padtop{padding:80px 0 0 0;}
@@ -494,12 +493,21 @@ body{
     color: blue;
 }
 
-
+#main1{
+    background: linear-gradient(90deg, rgba(207,83,255,1) 0%, rgba(212,226,68,1) 68%, rgba(82,218,122,1) 100%);
+    height: 100vh;
+    width: 100%;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
 
 
 #backg{
     background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2015/06/13/720991/202180fab978e812f31d27cb833f9a24.jpg");
-    height: 90vh;
+    height: 100vh;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;

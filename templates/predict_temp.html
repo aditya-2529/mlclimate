@@ -76,7 +76,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
     <div class="container-fluid">
-      <a class="navbar-brand fs-1" href="/">Climate Change</a>
+      <a class="navbar-brand fs-1" href="/"> ECO-PROGNOSIS</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -121,10 +121,22 @@
         </div>
     </div>
     <div class="container">
-      <canvas class="col-sm-2 col-6" id="graph" width="200" height="200"></canvas>
-    </div>
-    <div class="container">
-      <canvas class="col-sm-2 col-6" id="graph2" width="200" height="200"></canvas>
+      <div class="row">
+        <div class="col-8 col-sm-6 pb-4">
+          <canvas id="graph" width="200" height="200"></canvas>
+        </div>
+        <div class="col-8 col-sm-6 pb-4">
+          <canvas id="graph2" width="200" height="200"></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8 col-sm-6 pb-4">
+          <canvas id="graph3" width="200" height="200"></canvas>
+        </div>
+        <div class="col-8 col-sm-6 pb-4">
+          <canvas id="graph4" width="200" height="200"></canvas>
+        </div>
+      </div>
     </div>
     <script>
     var xyValues = JSON.parse('{{ json_data|tojson|safe }}');
@@ -136,8 +148,9 @@
       b[i] = xyValues[i].min;
       c[i] = xyValues[i].ds;
     }
-    new Chart("graph", {
-      type: "line",
+    function graphC(id,ty,t){
+      new Chart(id, {
+      type: ty,
       data: {
         labels: c,
         datasets: [{
@@ -146,20 +159,20 @@
           data: a
         }]
       },
-      options: {}
+      options: {
+        legend: false,
+        title:{
+          display: true,
+          text: t
+        }
+      }
     });
-    new Chart("graph2", {
-      type: "line",
-      data: {
-        labels: c,
-        datasets: [{
-          lineTension: 0,
-          borderColor: "rgba(0,0,255,0.1)",
-          data: b
-        }]
-      },
-      options: {}
-    });</script>
+    }
+    graphC("graph","line","Max Temperature");
+    graphC("graph2","line","Max Temperature");
+    graphC("graph3","bar","Min Temperature");
+    graphC("graph4","bar","Min Temperature");
+  </script>
     <div class="container">
         <div class="">
             <form action="{{url_for('predict')}}" method="POST">
