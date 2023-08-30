@@ -4,14 +4,62 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 from prophet.serialize import model_from_json
+import pymongo
+import time
+import schedule
+import datetime
+
 
 app = Flask(__name__)
+
+def getDb():
+    CONNECTION_STRING="mongodb+srv://add:v2GQe5gvNiL2IPk0@cluster0.gszdvho.mongodb.net/?retryWrites=true&w=majority"
+    try:
+        client = pymongo.MongoClient(CONNECTION_STRING)
+        print("Connection success")
+    except:
+        print("Connection failed")
+    mydb = client['climate']
+    return mydb
+
+c = getDb()
+def length():
+    mycoll = getcoll('states')
+    count = 0
+    for i in list(mycoll):
+        count += 1
+    return count
+
+def getcoll(s):
+    return c[s].find()
+
+def getCountry():
+    l = length()
+    mycoll = getcoll('states')
+    cname = [0] * l
+    for i in range(0,l):
+        cname[i] = mycoll[i]
+    return cname
+
+def dup():
+    for i in range(249):
+        del list_country[i]['_id']
+
+def getTitle():
+    mycoll = getcoll('table')
+    print(mycoll[0]['title'])
+    return mycoll[0]['title']
+
+list_country = getCountry()
+title = getTitle()
+dup()
+
 
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html',t=title)
 
 @app.route('/help')
 def help():
@@ -97,7 +145,8 @@ def feed():
 
 @app.route('/features')
 def features():
-    return render_template('features.html')
+    return render_template('features.html',listofCountry=list_country)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=5000,debug=True)
+    app.run(host="0.0.0.0",port=5000)
+

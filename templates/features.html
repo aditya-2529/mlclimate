@@ -5,7 +5,7 @@
   <link href="../static/index.css" rel="stylesheet" type="text/css" media="all">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body>
+<body onload="con()">
   <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
     <div class="container-fluid">
       <a class="navbar-brand fs-1" href="/"> ECO-PROGNOSIS</a>
@@ -38,11 +38,21 @@
       </div>
     </div>
   </nav>
+  <form action="{{'predict'}}">
   <div class="input-group mb-3">
     <label for="basic-url" class="form-label m-5 bold">Select the country</label>
-    <select class="p-4 m-4" id="sel_country"></select>
+    <select class="p-4 m-4" required name="country" id="sel_country" onchange="change()" style="width: 95%;">
+      <option class="m-4 p-4" value="">Choose the country</option>
+    </select>
+  </div>
+  <div class="input-group mb-3">
+    <label for="basic-url" class="form-label m-5 bold">Select the Region</label>
+    <select class="p-4 m-4" required name="region" id="sel_region" style="width: 95%;">
+      <option class="m-4 p-4" value="">Choose the Region</option>
+    </select>
 </div>
-<a class="btn btn-primary m-5" href="predict" role="button">Predict</a>
+<button class="btn btn-primary m-5" role="button">Predict</button>
+</form>
 <!-- <div class="input-group mb-3">
 <label for="basic-url" class="form-label m-4 bold">Select the region</label>
     <select class="p-1 m-4" id="sel_region"></select>
@@ -57,21 +67,61 @@
 <script src="../static/jquery.backtotop.js"></script>
 <script src="../static/jquery.mobilemenu.js"></script>
 <script>
-    $.getJSON('../static/data.json',function(data){
-        for (var i = 0 ; i < data.length; i++){
-            var t = `<option class="m-4 p-4 ${i}" value="${i}">${data[i].countryName}</option>`
+  // function con(){
+  //   $.getJSON('../static/data.json',function(data){
+  //       for (var i = 0 ; i < data.length; i++){
+  //           var t = `<option class="m-4 p-4" value="${data[i].countryName}">${data[i].countryName}</option>`
+  //           $('#sel_country').append(t);
+  //       }
+  //   });
+  // }
+    // function change(){
+    //   selectElement = document.querySelector('#sel_country');
+    //   output = selectElement.value;
+    //   // console.log(output)
+    //   $.getJSON('../static/data.json',function(data){
+    //     for (var i = 0 ; i < data.length; i++){
+    //       if(data[i].countryName===output) {
+    //         for(var j = 0 ; j < data[i].regions.length ; j++){
+    //           var t = `<option class="m-4 p-4" value="${data[i].regions[j].name}">${data[i].regions[j].name}</option>`
+    //           $('#sel_region').append(t);
+    //         }
+    //         // console.log(data[i].regions.length)
+    //       }
+    //     }
+    //   });
+    // }
+    var data = JSON.parse('{{ listofCountry|tojson|safe }}')
+    function con(){
+    data = data.sort((a, b) => {
+      if (a.countryName < b.countryName) {
+        return -1;
+      }
+    });
+    for (var i = 0 ; i < data.length; i++){
+            var t = `<option class="m-4 p-4" value="${data[i].countryName}">${data[i].countryName}</option>`
             $('#sel_country').append(t);
         }
-    })
-    // $.getJSON('../static/data.json',function(data){
-    //     for(var i = 0 ; i < data.length ; i++){
-    //         var i1 = $(`.${i}`).val();
-    //         for(var j = 0 ; j < data[i1].regions.length; j++){
-    //             var t = `<option>${data[i1].regions[j].name}</option>`
-    //             $('#sel_region').append(t);
-    //         }
-    //     }
-    // })
+      }
+    function change(){
+      selectElement = document.querySelector('#sel_country');
+      output = selectElement.value;
+        for (var i = 0 ; i < data.length; i++){
+          if(data[i].countryName===output) {
+            reset()
+            for(var j = 0 ; j < data[i].regions.length ; j++){
+              var t = `<option class="m-4 p-4" value="${data[i].regions[j].name}">${data[i].regions[j].name}</option>`
+              $('#sel_region').append(t);
+            }
+          }
+        }
+    }
+    function reset(){
+      var t = `<option class="m-4 p-4" value="">Choose the Region</option>`
+      $('#sel_region').empty().append(t);
+    }
+        
+    
     
 </script>
 </body>
