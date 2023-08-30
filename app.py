@@ -5,9 +5,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from prophet.serialize import model_from_json
 import pymongo
-import time
-import schedule
-import datetime
 
 
 app = Flask(__name__)
