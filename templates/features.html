@@ -47,9 +47,15 @@
   </div>
   <div class="input-group mb-3">
     <label for="basic-url" class="form-label m-5 bold">Select the Region</label>
-    <select class="p-4 m-4" required name="region" id="sel_region" style="width: 95%;">
+    <select class="p-4 m-4" required name="region" id="sel_region" style="width: 95%;" onchange="change2()">
       <option class="m-4 p-4" value="">Choose the Region</option>
     </select>
+</div>
+<div class="input-group mb-3">
+  <label for="basic-url" class="form-label m-5 bold">Select the City</label>
+  <select class="p-4 m-4" required name="region" id="sel_city" style="width: 95%;">
+    <option class="m-4 p-4" value="">Choose the City</option>
+  </select>
 </div>
 <button class="btn btn-primary m-5" role="button">Predict</button>
 </form>
@@ -67,58 +73,60 @@
 <script src="../static/jquery.backtotop.js"></script>
 <script src="../static/jquery.mobilemenu.js"></script>
 <script>
-  // function con(){
-  //   $.getJSON('../static/data.json',function(data){
-  //       for (var i = 0 ; i < data.length; i++){
-  //           var t = `<option class="m-4 p-4" value="${data[i].countryName}">${data[i].countryName}</option>`
-  //           $('#sel_country').append(t);
-  //       }
-  //   });
-  // }
-    // function change(){
-    //   selectElement = document.querySelector('#sel_country');
-    //   output = selectElement.value;
-    //   // console.log(output)
-    //   $.getJSON('../static/data.json',function(data){
-    //     for (var i = 0 ; i < data.length; i++){
-    //       if(data[i].countryName===output) {
-    //         for(var j = 0 ; j < data[i].regions.length ; j++){
-    //           var t = `<option class="m-4 p-4" value="${data[i].regions[j].name}">${data[i].regions[j].name}</option>`
-    //           $('#sel_region').append(t);
-    //         }
-    //         // console.log(data[i].regions.length)
-    //       }
-    //     }
-    //   });
-    // }
-    var data = JSON.parse('{{ listofCountry|tojson|safe }}')
-    function con(){
-    data = data.sort((a, b) => {
-      if (a.countryName < b.countryName) {
-        return -1;
-      }
-    });
-    for (var i = 0 ; i < data.length; i++){
-            var t = `<option class="m-4 p-4" value="${data[i].countryName}">${data[i].countryName}</option>`
+  function con(){
+    $.getJSON('../static/dat.json',function(data){
+        for (var i = 0 ; i < data.length; i++){
+            var t = `<option class="m-4 p-4" value="${data[i].name}">${data[i].name}</option>`
             $('#sel_country').append(t);
         }
-      }
-    function change(){
-      selectElement = document.querySelector('#sel_country');
-      output = selectElement.value;
+    });
+  }
+      ;
+      var output = '';
+    function change(){const selectElement = document.querySelector('#sel_country')
+      output = selectElement.value
+      $.getJSON('../static/dat.json',function(data){
         for (var i = 0 ; i < data.length; i++){
-          if(data[i].countryName===output) {
-            reset()
-            for(var j = 0 ; j < data[i].regions.length ; j++){
-              var t = `<option class="m-4 p-4" value="${data[i].regions[j].name}">${data[i].regions[j].name}</option>`
+          if(data[i].name===output) {
+            reset();
+            reset2();
+            for(var j = 0 ; j < data[i].states.length ; j++){
+              var t = `<option class="m-4 p-4" value="${data[i].states[j].name}">${data[i].states[j].name}</option>`
               $('#sel_region').append(t);
             }
           }
         }
+      });
+    }
+      
+      var output2 = '';
+    function change2(){const selectElement2 = document.querySelector('#sel_region');
+      $.getJSON('../static/dat.json',function(data){
+        output2 = selectElement2.value;
+        for (var i = 0 ; i < data.length; i++){
+          if(data[i].name===output) {
+            // reset();
+            for(var j = 0 ; j < data[i].states.length ; j++){
+              if (data[i].states[j].name===output2) {
+                reset2();
+                for(var k = 0 ; k < data[i].states[j].cities.length;k++){
+                var t = `<option class="m-4 p-4" value="${data[i].states[j].cities[k].name}">${data[i].states[j].cities[k].name}</option>`
+                $('#sel_city').append(t);
+                }
+                
+              }
+            }
+          }
+        }
+      });
     }
     function reset(){
       var t = `<option class="m-4 p-4" value="">Choose the Region</option>`
       $('#sel_region').empty().append(t);
+    }
+    function reset2(){
+      var t = `<option class="m-4 p-4" value="">Choose the City</option>`
+      $('#sel_city').empty().append(t);
     }
         
     
