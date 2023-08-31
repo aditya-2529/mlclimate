@@ -101,6 +101,14 @@ def feed():
 def features():
     return render_template('features.html')
 
+@app.route('/feature1')
+def feature1():
+    return render_template('feature1.html')
+
+@app.route('/feature2')
+def feature2():
+    return render_template('feature2.html')
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5000,debug=True)
 

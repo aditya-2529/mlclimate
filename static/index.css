@@ -494,7 +494,8 @@ body{
 }
 
 #main1{
-    background-image: linear-gradient( 40deg, rgb(224, 138, 72) , rgb(69, 69, 230));
+    background: linear-gradient( rgb(105, 48, 4),rgb(35, 7, 75));
+    color: #ffffff;
     
 }
 
